@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       backgroundColor: Colors.grey.shade100,
       body: ListView(
-        shrinkWrap: true, //TODO: Later Change this to see what happens
+        shrinkWrap: true,
         children: [
           Stack(
             children: [
@@ -171,14 +171,19 @@ class _MyHomePageState extends State<MyHomePage> {
           GridView.count(
             crossAxisCount: 2,
             crossAxisSpacing: 2,
+            primary: false,
             mainAxisSpacing: 4,
-            shrinkWrap: true, //TODO: Toggle this later
+            shrinkWrap: true,
             children: [
-              _buildCard('Job', 'Available', 1, true,
+              _buildCard('Job', 'Away for 3 hours', 1, false,
                   'https://loremflickr.com/g/320/240/man/all'),
               _buildCard('Job', 'Available', 2, true,
                   'https://loremflickr.com/g/320/240/woman/all'),
               _buildCard('Job', 'Available', 3, true,
+                  'https://loremflickr.com/g/320/240/student/all'),
+              _buildCard('Job', 'On leave', 4, false,
+                  'https://loremflickr.com/g/320/240/woman/all'),
+              _buildCard('Job', 'Available', 3, false,
                   'https://loremflickr.com/g/320/240/student/all'),
               _buildCard('Job', 'Available', 4, true,
                   'https://loremflickr.com/g/320/240/woman/all'),
@@ -199,16 +204,35 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         children: [
           SizedBox(height: 12),
-          Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                image: NetworkImage(imgUrl),
+          Stack(
+            children: [
+              Container(
+                height: 60,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                    image: NetworkImage(imgUrl),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              Container(
+                margin: EdgeInsets.only(left: 45),
+                height: 17,
+                width: 17,
+                decoration: BoxDecoration(
+                  // shape: RoundedCi
+                  color: isAvailable ? Colors.green : Colors.orange.shade900,
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 2,
+                  ),
+                ),
+              )
+            ],
           ),
           SizedBox(height: 8),
           Text(
