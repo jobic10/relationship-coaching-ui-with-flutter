@@ -149,21 +149,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'MY COACHES',
-                  style: GoogleFonts.quicksand(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ),
-                Text(
-                  'VIEW PAST SESSIONS',
-                  style: GoogleFonts.quicksand(
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
+                LinkText(text: 'MY COACHES', color: Colors.grey),
+                LinkText(
+                  text: 'VIEW PAST SESSIONS',
+                  color: Colors.green,
                 ),
               ],
             ),
@@ -278,6 +267,28 @@ class _MyHomePageState extends State<MyHomePage> {
       margin: cardIndex.isEven
           ? EdgeInsets.fromLTRB(10, 0, 25, 10)
           : EdgeInsets.fromLTRB(25, 0, 5, 10),
+    );
+  }
+}
+
+class LinkText extends StatelessWidget {
+  final String text;
+  final Color color;
+  const LinkText({
+    required this.text,
+    required this.color,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.quicksand(
+        color: color,
+        fontWeight: FontWeight.bold,
+        fontSize: 12,
+      ),
     );
   }
 }
